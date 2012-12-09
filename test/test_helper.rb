@@ -1,2 +1,2 @@
 require 'minitest/autorun'
-require 'mocha'
+require 'mocha/setup'
