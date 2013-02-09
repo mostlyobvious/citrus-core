@@ -45,10 +45,12 @@ module Citrus
       end
 
       def test_should_create_path_on_prepare
-        workspace = Workspace.new(sample_root, sample_build)
-        workspace.prepare
+        FakeFS do
+          workspace = Workspace.new(sample_root, sample_build)
+          workspace.prepare
 
-        assert File.directory?(workspace.path)
+          assert File.directory?(workspace.path)
+        end
       end
 
     end
