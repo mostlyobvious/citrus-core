@@ -7,7 +7,7 @@ module Citrus
     class BuildChangesetService
       ROOT_PATH = '/tmp'
 
-      def initialize(runner)
+      def initialize(runner = Runner.new)
         @runner  = runner
       end
 
@@ -16,8 +16,7 @@ module Citrus
         workspace = Workspace.new(ROOT_PATH, build)
         workspace.prepare
         configuration = Configuration.new
-        @runner.run(build, configuration, workspace)
-        build
+        return @runner.run(build, configuration, workspace)
       end
     end
   end

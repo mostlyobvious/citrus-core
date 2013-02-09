@@ -15,30 +15,20 @@ module Citrus
       end
 
       def test_should_execute_build_on_run
-        changeset = mock('changeset')
         runner = mock('runner')
         runner.expects(:run)
 
         service = BuildChangesetService.new(runner)
-        service.run(changeset)
+        service.run(sample_changeset)
       end
 
       def test_should_return_build_after_run
-        changeset = mock('changeset')
+        build  = mock('build')
         runner = mock('runner')
-        runner.expects(:run)
+        runner.expects(:run).returns(build)
 
         service = BuildChangesetService.new(runner)
-        assert_kind_of Build, service.run(changeset)
-      end
-
-      def test_should_return_successful_build_when_expected
-        runner = mock('runner')
-        runner.expects(:run)
-
-        service = BuildChangesetService.new(runner)
-        build = service.run(sample_changeset)
-        assert_equal :success, build.result
+        assert_equal build, service.run(sample_changeset)
       end
 
     end
