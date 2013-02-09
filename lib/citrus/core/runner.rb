@@ -3,6 +3,7 @@ module Citrus
     class Runner
 
       def run(build, configuration, workspace)
+        build
       end
 
     end

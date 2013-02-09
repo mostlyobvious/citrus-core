@@ -13,6 +13,14 @@ module Citrus
         assert_respond_to sample_runner, :run
       end
 
+      def test_should_return_build_after_run
+        build = mock('build')
+        configuration = mock('configuration')
+        workspace = mock('workspace')
+
+        assert_equal build, sample_runner.run(build, configuration, workspace)
+      end
+
     end
   end
 end
