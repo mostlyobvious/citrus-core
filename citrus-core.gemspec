@@ -21,4 +21,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'mocha',    '~> 0.13.1'
   gem.add_development_dependency 'fakefs',   '~> 0.4.2'
   gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'minitest-reporters', '~> 0.14.7'
 end
