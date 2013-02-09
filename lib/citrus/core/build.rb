@@ -9,6 +9,18 @@ module Citrus
         @changeset = changeset
         @uuid = SecureRandom.uuid
       end
+
+      def succeed
+        @result = :success
+      end
+
+      def fail
+        @result = :failure
+      end
+
+      def abort
+        @result = :aborted
+      end
     end
   end
 end
