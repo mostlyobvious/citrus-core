@@ -3,7 +3,7 @@ module Citrus
     class Runner
 
       def run(configuration, workspace)
-        options = { :chdir => workspace.path, :out => "/dev/null", :err => "/dev/null" }
+        options = { :chdir => workspace.path.to_s, :out => "/dev/null", :err => "/dev/null" }
         Process.wait(Process.spawn(configuration.build_script, options))
         $?.success?
       end

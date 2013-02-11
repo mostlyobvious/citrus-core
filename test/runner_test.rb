@@ -9,8 +9,8 @@ module Citrus
         Runner.new
       end
 
-      def sample_path
-        File.join(File.dirname(__FILE__))
+      def test_path
+        Citrus::Core.root.join('test/support')
       end
 
       def sample_success_configuration
@@ -27,14 +27,14 @@ module Citrus
 
       def test_successful_run
         workspace = mock('workspace')
-        workspace.expects('path').returns(sample_path)
+        workspace.expects('path').returns(test_path)
 
         assert sample_runner.run(sample_success_configuration, workspace)
       end
 
       def test_failed_run
         workspace = mock('workspace')
-        workspace.expects('path').returns(sample_path)
+        workspace.expects('path').returns(test_path)
 
         refute sample_runner.run(sample_failure_configuration, workspace)
       end

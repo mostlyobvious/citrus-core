@@ -1,3 +1,4 @@
+require 'citrus/core'
 require 'citrus/core/build'
 require 'citrus/core/workspace'
 require 'citrus/core/configuration'
@@ -5,18 +6,17 @@ require 'citrus/core/configuration'
 module Citrus
   module Core
     class BuildChangesetService
-      ROOT_PATH   = '/tmp'
-      CONFIG_PATH = '.citrus/config.rb'
 
       def initialize(runner = Runner.new)
         @runner  = runner
       end
 
       def run(changeset)
-        build = Build.new(changeset)
-        workspace = Workspace.new(ROOT_PATH, build)
+        build     = Build.new(changeset)
+        workspace = Workspace.new(Core.build_root, build)
+
         workspace.prepare
-        configuration = Configuration.load_from_file(File.join(workspace.path, CONFIG_PATH))
+        configuration = Configuration.load_from_file(workspace.path.join(Core.config_path))
 
         unless configuration.build_script
           build.abort
@@ -27,6 +27,7 @@ module Citrus
 
         return build
       end
+
     end
   end
 end

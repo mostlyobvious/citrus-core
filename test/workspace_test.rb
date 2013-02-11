@@ -28,7 +28,7 @@ module Citrus
 
       def test_should_nest_path_under_root_path
         workspace = Workspace.new(sample_root, sample_build)
-        assert_match %r{\A#{sample_root}}, workspace.path
+        assert_match %r{\A#{sample_root}}, workspace.path.to_s
       end
 
       def test_should_partition_path
@@ -37,7 +37,7 @@ module Citrus
         build.expects(:uuid).returns(uuid)
         workspace = Workspace.new(sample_root, build)
 
-        assert_match %r{\d{4}/\d{2}/\d{2}/#{uuid}\Z}, workspace.path
+        assert_match %r{\d{4}/\d{2}/\d{2}/#{uuid}\Z}, workspace.path.to_s
       end
 
       def test_should_respond_to_prepare

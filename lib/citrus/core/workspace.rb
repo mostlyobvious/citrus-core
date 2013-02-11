@@ -10,7 +10,7 @@ module Citrus
       end
 
       def path
-        @root.join(partition, @uuid).to_s
+        @root.join(partition, @uuid)
       end
 
       def prepare
@@ -24,7 +24,7 @@ module Citrus
       end
 
       def create_workspace
-        FileUtils.mkdir_p(path)
+        FileUtils.mkdir_p(path.to_s)
       end
 
     end
