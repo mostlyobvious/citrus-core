@@ -2,15 +2,10 @@ module Citrus
   module Core
     class Runner
 
-      def run(build, configuration, workspace)
-        unless configuration.build_script
-          build.abort
-        else
-          pid = Process.spawn(configuration.build_script, :chdir => workspace.path, :out => "/dev/null", :err => "/dev/null")
-          Process.wait(pid)
-          $?.success? ? build.succeed : build.fail
-        end
-        return build
+      def run(configuration, workspace)
+        options = { :chdir => workspace.path, :out => "/dev/null", :err => "/dev/null" }
+        Process.wait(Process.spawn(configuration.build_script, options))
+        $?.success?
       end
 
     end
