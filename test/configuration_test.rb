@@ -6,7 +6,7 @@ module Citrus
     class ConfigurationTest < MiniTest::Unit::TestCase
 
       def sample_configuration_path
-        File.join(File.dirname(__FILE__), 'sample_app/.citrus/config.rb')
+        File.join(File.dirname(__FILE__), 'success_app/.citrus/config.rb')
       end
 
       def test_should_load_configuration_from_file
