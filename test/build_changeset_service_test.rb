@@ -4,6 +4,7 @@ require 'citrus/core/build_changeset_service'
 module Citrus
   module Core
     class BuildChangesetServiceTest < MiniTest::Unit::TestCase
+      include FakeFilesystemHelper
 
       def sample_changeset
         mock('changeset')

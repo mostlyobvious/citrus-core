@@ -5,6 +5,7 @@ require 'securerandom'
 module Citrus
   module Core
     class WorkspaceTest < MiniTest::Unit::TestCase
+      include FakeFilesystemHelper
 
       def sample_build
         build = mock('build')
@@ -45,12 +46,10 @@ module Citrus
       end
 
       def test_should_create_path_on_prepare
-        FakeFS do
-          workspace = Workspace.new(sample_root, sample_build)
-          workspace.prepare
+        workspace = Workspace.new(sample_root, sample_build)
+        workspace.prepare
 
-          assert File.directory?(workspace.path)
-        end
+        assert File.directory?(workspace.path)
       end
 
     end
