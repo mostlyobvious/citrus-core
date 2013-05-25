@@ -4,18 +4,10 @@ module Citrus
 
       attr_accessor :build_script
 
-      def build(script)
-        @build_script = script
-      end
-
-      def self.describe(&block)
+      def self.describe
         config = self.new
-        block.call(config)
+        yield config if block_given?
         config
-      end
-
-      def self.load_from_file(path)
-        eval File.read(path)
       end
 
     end

@@ -9,7 +9,15 @@ module Citrus
 
       def initialize(repository, commits)
         @repository = repository
-        @commits = commits
+        @commits    = commits
+      end
+
+      def repository_url
+        repository.url
+      end
+
+      def head
+        commits.last.sha
       end
 
     end

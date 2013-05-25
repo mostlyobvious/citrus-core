@@ -1,4 +1,0 @@
-#!/bin/sh
-
-# This script returns with exit code given as parameter
-exit $1
