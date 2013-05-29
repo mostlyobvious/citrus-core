@@ -6,6 +6,10 @@ module Citrus
         @build_root || root.join('builds')
       end
 
+      def cache_root
+        @cache_root || root.join('cache')
+      end
+
       def config_path
         Pathname.new('.citrus/config.rb')
       end
