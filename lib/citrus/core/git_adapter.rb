@@ -24,9 +24,9 @@ module Citrus
 
       protected
 
-      def run(command, directory)
-        process = ChildProcess.build(command)
-        process.cwd = directory.to_s
+      def run(command, directory = nil)
+        process = ChildProcess.build(*command)
+        process.cwd = directory.to_s if directory
         process.start
         process.poll_for_exit(TIMEOUT)
       rescue ChildProcess::TimeoutError
