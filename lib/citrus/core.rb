@@ -1,3 +1,5 @@
+require 'pathname'
+
 module Citrus
   module Core
     class << self
