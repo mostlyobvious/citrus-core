@@ -4,7 +4,7 @@ module Citrus
 
       attr_reader :root_path, :code_fetcher
 
-      def initialize(root_path, code_fetcher)
+      def initialize(root_path = Citrus::Core.build_root, code_fetcher = CachedCodeFetcher.new)
         @root_path    = root_path
         @code_fetcher = code_fetcher
       end

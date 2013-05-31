@@ -7,7 +7,7 @@ module Citrus
 
       attr_reader :validator
 
-      def initialize(validator)
+      def initialize(validator = ConfigurationValidator.new)
         @validator = validator
       end
 
