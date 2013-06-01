@@ -20,6 +20,7 @@ module Citrus
   end
 end
 
+require 'citrus/core/publisher'
 require 'citrus/core/build'
 require 'citrus/core/workspace_builder'
 require 'citrus/core/cached_code_fetcher'
