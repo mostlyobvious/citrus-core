@@ -6,6 +6,6 @@ changeset     = Citrus::Core::GithubAdapter.new.create_changeset_from_push_data(
 build         = Citrus::Core::Build.new(changeset)
 build_service = Citrus::Core::ExecuteBuildService.new
 
-puts 'Sukces, milordzie.' if build_service.start(build).result == 0
+puts 'Sukces, milordzie.' if build_service.start(build) == 0
 
 

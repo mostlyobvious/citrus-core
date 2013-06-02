@@ -6,7 +6,8 @@ module Citrus
         process = ChildProcess.build(configuration.build_script)
         process.cwd = path.to_s
         process.start
-        return TestResult.new(process)
+        process.wait
+        return process.exit_code
       end
 
     end
