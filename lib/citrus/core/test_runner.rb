@@ -7,7 +7,7 @@ module Citrus
         process.cwd = path.to_s
         process.start
         process.wait
-        return process.exit_code
+        ExitCode.new(process.exit_code)
       end
 
     end

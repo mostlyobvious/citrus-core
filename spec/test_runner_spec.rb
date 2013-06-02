@@ -7,7 +7,6 @@ describe Citrus::Core::TestRunner do
   let(:configuration) { fake(:configuration, build_script: 'w') }
   let(:path)          { fake(:pathname) }
   let(:process)       { fake { ChildProcess::AbstractProcess } }
-  let(:exit_code)     { fake(:fixnum) }
 
   context '#start' do
     before { stub(ChildProcess).build(configuration.build_script) { process } }
@@ -17,8 +16,7 @@ describe Citrus::Core::TestRunner do
     end
 
     it 'should return process exit code' do
-      stub(process).exit_code { exit_code }
-      expect(subject.start(configuration, path)).to eql(exit_code)
+      expect(subject.start(configuration, path)).to be_kind_of(Citrus::Core::ExitCode)
     end
 
     it 'should wait for process to finish' do

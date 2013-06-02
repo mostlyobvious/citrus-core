@@ -10,7 +10,6 @@ describe Citrus::Core::ExecuteBuildService do
   let(:configuration_loader)  { fake(:configuration_loader, load_from_path: configuration) }
   let(:configuration)         { fake(:configuration) }
   let(:path)                  { fake }
-  let(:exit_code)             { fake(:fixnum) }
 
   context '#start' do
     before { subject.start(build) }
@@ -25,11 +24,6 @@ describe Citrus::Core::ExecuteBuildService do
 
     it 'should execute build script' do
       expect(test_runner).to have_received.start(configuration, path)
-    end
-
-    it 'should return build exit code' do
-      stub(test_runner).start(any_args) { exit_code }
-      expect(subject.start(build)).to eql(exit_code)
     end
   end
 
