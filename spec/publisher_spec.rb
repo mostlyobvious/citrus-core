@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 class Subscriber
-  def build_started; end
+  def foo; end
 end
 
 describe Citrus::Core::Publisher do
@@ -11,9 +11,9 @@ describe Citrus::Core::Publisher do
 
   it 'should notify added subscribers on publish' do
     subject.add_subscriber(subscriber)
-    subject.publish(:build_started)
+    subject.publish(:foo)
 
-    expect(subscriber).to have_received.build_started
+    expect(subscriber).to have_received.foo
   end
 
   it 'should pass silently when subscriber does not respond to event' do

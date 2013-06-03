@@ -1,7 +1,8 @@
 module Citrus
   module Core
-    class ConfigurationFileInvalidError  < StandardError; end
-    class ConfigurationFileNotFoundError < StandardError; end
+    class ConfigurationError             < StandardError; end
+    class ConfigurationFileInvalidError  < ConfigurationError; end
+    class ConfigurationFileNotFoundError < ConfigurationError; end
 
     class ConfigurationLoader
 
