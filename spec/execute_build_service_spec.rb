@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 class Subscriber
-  def build_failed(build);    end
-  def build_succeeded(build); end
-  def build_started(build);   end
-  def build_aborted(build);   end
+  def build_started(build);           end
+  def build_failed(build, output);    end
+  def build_succeeded(build, output); end
+  def build_aborted(build, reason);   end
 end
 
 describe Citrus::Core::ExecuteBuildService do
@@ -12,7 +12,7 @@ describe Citrus::Core::ExecuteBuildService do
   subject { described_class.new(workspace_builder, configuration_loader, test_runner) }
 
   let(:workspace_builder)     { fake(:workspace_builder, create_workspace: path) }
-  let(:test_runner)           { fake(:test_runner, start: fake(:test_result)) }
+  let(:test_runner)           { fake(:test_runner, start: fake(:test_result, output: result_output)) }
   let(:build)                 { fake(:build) }
   let(:configuration_loader)  { fake(:configuration_loader, load_from_path: configuration) }
   let(:configuration)         { fake(:configuration) }
@@ -20,6 +20,7 @@ describe Citrus::Core::ExecuteBuildService do
   let(:subscriber)            { fake(:subscriber) }
   let(:success_result)        { Citrus::Core::TestResult.new(0) }
   let(:failure_result)        { Citrus::Core::TestResult.new(1) }
+  let(:result_output)         { StringIO.new }
 
   context '#start' do
     before { subject.add_subscriber(subscriber) }
@@ -45,23 +46,25 @@ describe Citrus::Core::ExecuteBuildService do
 
       it 'should publish build_succeeded event when build has succeeded' do
         stub(test_runner).start(any_args) { success_result }
-        expect(subscriber).to have_received.build_succeeded(build)
+        expect(subscriber).to have_received.build_succeeded(build, result_output)
       end
 
       it 'should publish build_failed event when build has failed' do
         stub(test_runner).start(any_args) { failure_result }
-        expect(subscriber).to have_received.build_failed(build)
+        expect(subscriber).to have_received.build_failed(build, result_output)
       end
     end
 
     context 'invalid configuration' do
+      let(:reason) { Citrus::Core::ConfigurationError.new }
+
       before do
-        stub(configuration_loader).load_from_path(path) { raise Citrus::Core::ConfigurationError }
+        stub(configuration_loader).load_from_path(path) { raise reason }
         expect { subject.start(build) }.to raise_error(Citrus::Core::ConfigurationError)
       end
 
       it 'should publish build_aborted event when unable to start build due to invalid configuration' do
-        expect(subscriber).to have_received.build_aborted(build)
+        expect(subscriber).to have_received.build_aborted(build, reason)
       end
     end
   end

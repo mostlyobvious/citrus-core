@@ -18,11 +18,11 @@ module Citrus
         configuration = configuration_loader.load_from_path(path)
         publish(:build_started, build)
         result = test_runner.start(configuration, path)
-        publish(:build_succeeded, build) if result.success?
-        publish(:build_failed, build)    if result.failure?
-      rescue ConfigurationError
-        publish(:build_aborted, build)
-        raise
+        publish(:build_succeeded, build, result.output) if result.success?
+        publish(:build_failed, build, result.output)    if result.failure?
+      rescue ConfigurationError => error
+        publish(:build_aborted, build, error)
+        raise error
       end
 
     end
