@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'tmpdir'
 
 class Subscriber
   def output_received(data); end
