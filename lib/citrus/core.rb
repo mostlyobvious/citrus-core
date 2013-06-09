@@ -22,7 +22,7 @@ end
 
 require 'citrus/core/publisher'
 require 'citrus/core/build'
-require 'citrus/core/exit_code'
+require 'citrus/core/test_result'
 require 'citrus/core/workspace_builder'
 require 'citrus/core/cached_code_fetcher'
 require 'citrus/core/changeset'
