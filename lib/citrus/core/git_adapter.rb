@@ -4,7 +4,7 @@ require 'shellwords'
 module Citrus
   module Core
     class GitAdapter
-      TIMEOUT = 10
+      TIMEOUT = 600
 
       def clone_repository(source, destination)
         run %W(git clone #{shell_quote(source)} #{shell_quote(destination)})
