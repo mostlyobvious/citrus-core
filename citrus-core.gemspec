@@ -4,12 +4,12 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'citrus/core/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = "citrus_core"
+  gem.name          = "citrus-core"
   gem.version       = Citrus::Core::VERSION
   gem.authors       = ["Paweł Pacana"]
   gem.email         = ["pawel.pacana@syswise.eu"]
-  gem.description   = "Citrus CI core domain."
-  gem.summary       = "Citrus CI core domain."
+  gem.description   = "Citrus continous integration core components."
+  gem.summary       = "Citrus continous integration core components."
   gem.homepage      = "http://citrus-ci.org"
 
   gem.files         = `git ls-files`.split($/)
