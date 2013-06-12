@@ -10,7 +10,9 @@ describe Citrus::Core::TestRunner do
 
   let(:configuration) { fake(:configuration, build_script: 'hostname') }
   let(:path)          { Pathname.new('/') }
-  let(:process)       { fake { ChildProcess::AbstractProcess } }
+  let(:process)       { fake(io: process_io, exit_code: exit_code) { ChildProcess::AbstractProcess } }
+  let(:process_io)    { fake { ChildProcess::AbstractIO } }
+  let(:exit_code)     { fake(:fixnum) }
   let(:subscriber)    { fake(:subscriber) }
 
   context '#start' do
@@ -18,6 +20,7 @@ describe Citrus::Core::TestRunner do
       before { stub(ChildProcess).build(configuration.build_script) { process } }
 
       it 'spawns child process' do
+        subject.start(configuration, path)
         expect(process).to have_received.start
       end
 
@@ -26,6 +29,7 @@ describe Citrus::Core::TestRunner do
       end
 
       it 'should wait for process to finish' do
+        subject.start(configuration, path)
         expect(process).to have_received.wait
       end
     end

@@ -19,7 +19,7 @@ describe Citrus::Core::CachedCodeFetcher do
 
       before do
         stub(cache_root).join(any_args) { cache_dir }
-        stub(cache_dir).exist?          { false }
+        stub(cache_dir).join('.git')    { fake(:pathname, exist?: false) }
         subject.fetch(changeset, destination)
       end
 
@@ -38,7 +38,7 @@ describe Citrus::Core::CachedCodeFetcher do
 
       before do
         stub(cache_root).join(any_args) { cache_dir }
-        stub(cache_dir).exist?          { true }
+        stub(cache_dir).join('.git')    { fake(:pathname, exist?: true) }
         subject.fetch(changeset, destination)
       end
 
