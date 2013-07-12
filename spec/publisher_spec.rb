@@ -20,7 +20,7 @@ describe Citrus::Core::Publisher do
     expect {
       subject.add_subscriber(subscriber)
       subject.publish(:foo)
-    }.to_not raise_error(NoMethodError)
+    }.to_not raise_error
   end
 
 end
