@@ -1,17 +1,13 @@
-require 'securerandom'
-require 'stringio'
-
 module Citrus
   module Core
     class Build
 
-      attr_reader   :changeset, :uuid
-      attr_accessor :output
+      attr_reader :changeset, :uuid, :output
 
-      def initialize(changeset, uuid = SecureRandom.uuid)
+      def initialize(changeset, uuid, output)
         @changeset = changeset
         @uuid      = uuid
-        @output    = StringIO.new
+        @output    = output
       end
 
     end

@@ -1,11 +1,12 @@
 require 'citrus/core'
+require 'securerandom'
 
 module Citrus
   module Core
     class CreateBuildService
 
       def create_from_changeset(changeset)
-        Build.new(changeset)
+        Build.new(changeset, SecureRandom.uuid, StringIO.new)
       end
 
       def create_from_github_push(push_data, adapter = GithubAdapter.new)
