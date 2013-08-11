@@ -5,7 +5,7 @@ describe Citrus::Core::ConfigurationLoader do
   subject { described_class.new(validator) }
 
   let(:validator) { fake(:configuration_validator) }
-  let(:test_root) { Pathname.new(File.dirname(__FILE__)) }
+  let(:test_root) { Pathname.new(File.dirname(__FILE__)).join('../../') }
   let(:repo_root) { test_root.join('fixtures/repo') }
 
   context '#load_from_path' do

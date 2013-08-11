@@ -5,7 +5,7 @@ describe Citrus::Core::CreateBuildService do
   let(:service)        { described_class.new }
   let(:github_adapter) { fake(:github_adapter) }
   let(:changeset)      { fake(:changeset) }
-  let(:push_data)      { Pathname.new(File.dirname(__FILE__)).join('fixtures/github_push_data.json').read }
+  let(:push_data)      { Pathname.new(File.dirname(__FILE__)).join('../../fixtures/github_push_data.json').read }
 
   context '#create_from_changeset' do
     subject { service.create_from_changeset(changeset) }

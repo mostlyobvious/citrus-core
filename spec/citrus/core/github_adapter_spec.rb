@@ -4,7 +4,7 @@ describe Citrus::Core::GithubAdapter do
 
   subject { described_class.new }
 
-  let(:push_data) { Pathname.new(File.dirname(__FILE__)).join('fixtures/github_push_data.json').read }
+  let(:push_data) { Pathname.new(File.dirname(__FILE__)).join('../../fixtures/github_push_data.json').read }
 
   context '#create_changeset_from_push_data' do
     let(:changeset) { subject.create_changeset_from_push_data(push_data) }
