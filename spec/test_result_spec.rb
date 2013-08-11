@@ -12,9 +12,4 @@ describe Citrus::Core::TestResult do
     expect(subject.failure?).to be_true
   end
 
-  it 'should have IO like output' do
-    subject = described_class.new(0)
-    expect(subject.output).to respond_to(:rewind)
-  end
-
 end

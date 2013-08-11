@@ -41,6 +41,11 @@ describe Citrus::Core::TestRunner do
       subject.start(build, configuration, path)
       expect(subscriber).to have_received.build_output_received(build, `hostname`)
     end
+
+    it 'should write process ouput to build' do
+      subject.start(build, configuration, path)
+      expect(build_output).to have_received.write(`hostname`)
+    end
   end
 
   it 'should allow adding subscribers' do

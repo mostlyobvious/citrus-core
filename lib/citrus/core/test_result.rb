@@ -4,11 +4,10 @@ module Citrus
   module Core
     class TestResult
 
-      attr_reader :value, :output
+      attr_reader :value
 
-      def initialize(value, output = StringIO.new)
+      def initialize(value)
         @value  = value.to_i
-        @output = output
       end
 
       def success?

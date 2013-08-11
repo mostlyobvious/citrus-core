@@ -31,8 +31,8 @@ module Citrus
       end
 
       def notify_build_result(build, result)
-        publish(:build_succeeded, build, result.output) if result.success?
-        publish(:build_failed,    build, result.output) if result.failure?
+        publish(:build_succeeded, build, build.output) if result.success?
+        publish(:build_failed,    build, build.output) if result.failure?
       end
 
       def notify_build_abort(build, error)

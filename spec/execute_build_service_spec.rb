@@ -12,15 +12,15 @@ describe Citrus::Core::ExecuteBuildService do
   subject { described_class.new(workspace_builder, configuration_loader, test_runner) }
 
   let(:workspace_builder)     { fake(:workspace_builder, create_workspace: path) }
-  let(:test_runner)           { fake(:test_runner, start: fake(:test_result, output: result_output)) }
-  let(:build)                 { fake(:build) }
+  let(:test_runner)           { fake(:test_runner, start: fake(:test_result)) }
+  let(:build)                 { fake(:build, output: build_output) }
   let(:configuration_loader)  { fake(:configuration_loader, load_from_path: configuration) }
   let(:configuration)         { fake(:configuration) }
   let(:path)                  { fake }
   let(:subscriber)            { fake(:subscriber) }
   let(:success_result)        { Citrus::Core::TestResult.new(0) }
   let(:failure_result)        { Citrus::Core::TestResult.new(1) }
-  let(:result_output)         { StringIO.new }
+  let(:build_output)          { StringIO.new }
 
   context '#start' do
     before { subject.add_subscriber(subscriber) }
@@ -46,12 +46,12 @@ describe Citrus::Core::ExecuteBuildService do
 
       it 'should publish build_succeeded event when build has succeeded' do
         stub(test_runner).start(any_args) { success_result }
-        expect(subscriber).to have_received.build_succeeded(build, result_output)
+        expect(subscriber).to have_received.build_succeeded(build, build_output)
       end
 
       it 'should publish build_failed event when build has failed' do
         stub(test_runner).start(any_args) { failure_result }
-        expect(subscriber).to have_received.build_failed(build, result_output)
+        expect(subscriber).to have_received.build_failed(build, build_output)
       end
     end
 
