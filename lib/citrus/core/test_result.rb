@@ -1,17 +1,15 @@
-require 'stringio'
-
 module Citrus
   module Core
     class TestResult
 
-      attr_reader :value
+      attr_reader :exit_code
 
-      def initialize(value)
-        @value  = value.to_i
+      def initialize(exit_code)
+        @exit_code  = exit_code.to_i
       end
 
       def success?
-        value == 0
+        exit_code == 0
       end
 
       def failure?
