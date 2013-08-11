@@ -7,7 +7,7 @@ module Citrus
 
       include Publisher
 
-      def start(configuration, path)
+      def start(build, configuration, path)
         process = ChildProcess.build(configuration.build_script)
         process.cwd = path.to_s
         r, w = IO.pipe
@@ -19,7 +19,7 @@ module Citrus
           loop do
             chunk = r.readpartial(CHUNK_SIZE)
             output.write(chunk)
-            publish(:output_received, chunk)
+            publish(:build_output_received, build, chunk)
           end
         rescue EOFError
         end

@@ -37,7 +37,7 @@ describe Citrus::Core::ExecuteBuildService do
       end
 
       it 'should execute build script' do
-        expect(test_runner).to have_received.start(configuration, path)
+        expect(test_runner).to have_received.start(build, configuration, path)
       end
 
       it 'should publish build_started event when starting build' do

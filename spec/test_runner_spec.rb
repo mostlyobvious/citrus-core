@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 class Subscriber
-  def output_received(data); end
+  def build_output_received(build, data); end
 end
 
 describe Citrus::Core::TestRunner do
@@ -14,30 +14,31 @@ describe Citrus::Core::TestRunner do
   let(:process_io)    { fake { ChildProcess::AbstractIO } }
   let(:exit_code)     { fake(:fixnum) }
   let(:subscriber)    { fake(:subscriber) }
+  let(:build)         { fake(:build) }
 
   context '#start' do
     context do
       before { stub(ChildProcess).build(configuration.build_script) { process } }
 
       it 'spawns child process' do
-        subject.start(configuration, path)
+        subject.start(build, configuration, path)
         expect(process).to have_received.start
       end
 
       it 'should return test result' do
-        expect(subject.start(configuration, path)).to be_kind_of(Citrus::Core::TestResult)
+        expect(subject.start(build, configuration, path)).to be_kind_of(Citrus::Core::TestResult)
       end
 
       it 'should wait for process to finish' do
-        subject.start(configuration, path)
+        subject.start(build, configuration, path)
         expect(process).to have_received.wait
       end
     end
 
-    it 'should publish output_received event when process produced output' do
+    it 'should publish build_output_received event when process produced output' do
       subject.add_subscriber(subscriber)
-      subject.start(configuration, path)
-      expect(subscriber).to have_received.output_received(`hostname`)
+      subject.start(build, configuration, path)
+      expect(subscriber).to have_received.build_output_received(build, `hostname`)
     end
   end
 

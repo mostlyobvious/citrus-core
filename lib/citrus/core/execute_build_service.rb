@@ -17,7 +17,7 @@ module Citrus
         path = workspace_builder.create_workspace(build)
         configuration = configuration_loader.load_from_path(path)
         notify_build_start(build)
-        result = test_runner.start(configuration, path)
+        result = test_runner.start(build, configuration, path)
         notify_build_result(build, result)
       rescue ConfigurationError => error
         notify_build_abort(build, error)
