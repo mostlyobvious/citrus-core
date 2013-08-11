@@ -14,10 +14,10 @@ module Citrus
       end
 
       def start(build)
-        path = workspace_builder.create_workspace(build)
-        configuration = configuration_loader.load_from_path(path)
+        workspace_path = workspace_builder.create_workspace(build)
+        configuration  = configuration_loader.load_from_path(workspace_path)
         notify_build_start(build)
-        result = test_runner.start(build, configuration, path)
+        result = test_runner.start(build, configuration, workspace_path)
         notify_build_result(build, result)
       rescue ConfigurationError => error
         notify_build_abort(build, error)
