@@ -14,7 +14,8 @@ describe Citrus::Core::TestRunner do
   let(:process_io)    { fake { ChildProcess::AbstractIO } }
   let(:exit_code)     { fake(:fixnum) }
   let(:subscriber)    { fake(:subscriber) }
-  let(:build)         { fake(:build) }
+  let(:build)         { fake(:build, output: build_output) }
+  let(:build_output)  { fake { [File, StringIO] } }
 
   context '#start' do
     context do

@@ -14,17 +14,24 @@ module Citrus
         process.io.stdout = process.io.stderr = w
         process.start
         w.close
-        output = StringIO.new
+        reopen_for_append(build.output)
         begin
           loop do
             chunk = r.readpartial(CHUNK_SIZE)
-            output.write(chunk)
+            build.output.write(chunk)
             publish(:build_output_received, build, chunk)
           end
         rescue EOFError
         end
         process.wait
-        TestResult.new(process.exit_code, output)
+        TestResult.new(process.exit_code, build.output)
+      end
+
+      protected
+
+      def reopen_for_append(io)
+        return io.reopen(io.string, 'a') if io.respond_to?(:string)
+        io.reopen(io.path, 'a')
       end
 
     end
