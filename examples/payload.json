@@ -1,1 +1,128 @@
-{ "after": "1b234fec1196170fa01c7b7d370a8fec7e2e3e61", "before": "646f122aa8fa537f9d05bbcc58712f782ee9d43f", "commits": [ { "added": [], "author": { "email": "pawel.pacana@gmail.com", "name": "Pawe\u0142 Pacana", "username": "pawelpacana" }, "committer": { "email": "pawel.pacana@gmail.com", "name": "Pawe\u0142 Pacana", "username": "pawelpacana" }, "distinct": true, "id": "0332491c0d3b617539c29fa66b0e6316e23b25a2", "message": "Add cache_root global.", "modified": [ ".gitignore", "lib/citrus/core.rb" ], "removed": [], "timestamp": "2013-05-29T15:30:43-07:00", "url": "https://github.com/pawelpacana/citrus-core/commit/0332491c0d3b617539c29fa66b0e6316e23b25a2" }, { "added": [], "author": { "email": "pawel.pacana@gmail.com", "name": "Pawe\u0142 Pacana", "username": "pawelpacana" }, "committer": { "email": "pawel.pacana@gmail.com", "name": "Pawe\u0142 Pacana", "username": "pawelpacana" }, "distinct": true, "id": "cb1eb5365799df518cfcfa4e422aafe06e4b64d5", "message": "Bring git adapter to reality since it did not have spec.", "modified": [ "lib/citrus/core/git_adapter.rb" ], "removed": [], "timestamp": "2013-05-29T15:32:07-07:00", "url": "https://github.com/pawelpacana/citrus-core/commit/cb1eb5365799df518cfcfa4e422aafe06e4b64d5" }, { "added": [ ".citrus/config.rb" ], "author": { "email": "pawel.pacana@gmail.com", "name": "Pawe\u0142 Pacana", "username": "pawelpacana" }, "committer": { "email": "pawel.pacana@gmail.com", "name": "Pawe\u0142 Pacana", "username": "pawelpacana" }, "distinct": true, "id": "1b234fec1196170fa01c7b7d370a8fec7e2e3e61", "message": "Add simplest config to run build from this repository.", "modified": [], "removed": [], "timestamp": "2013-05-29T15:33:17-07:00", "url": "https://github.com/pawelpacana/citrus-core/commit/1b234fec1196170fa01c7b7d370a8fec7e2e3e61" } ], "compare": "https://github.com/pawelpacana/citrus-core/compare/646f122aa8fa...1b234fec1196", "created": false, "deleted": false, "forced": false, "head_commit": { "added": [ ".citrus/config.rb" ], "author": { "email": "pawel.pacana@gmail.com", "name": "Pawe\u0142 Pacana", "username": "pawelpacana" }, "committer": { "email": "pawel.pacana@gmail.com", "name": "Pawe\u0142 Pacana", "username": "pawelpacana" }, "distinct": true, "id": "1b234fec1196170fa01c7b7d370a8fec7e2e3e61", "message": "Add simplest config to run build from this repository.", "modified": [], "removed": [], "timestamp": "2013-05-29T15:33:17-07:00", "url": "https://github.com/pawelpacana/citrus-core/commit/1b234fec1196170fa01c7b7d370a8fec7e2e3e61" }, "pusher": { "email": "pawel.pacana@gmail.com", "name": "pawelpacana" }, "ref": "refs/heads/master", "repository": { "created_at": 1360404806, "fork": false, "forks": 0, "has_downloads": true, "has_issues": true, "has_wiki": true, "id": 8108400, "language": "Ruby", "master_branch": "master", "name": "citrus-core", "open_issues": 0, "owner": { "email": "pawel.pacana@gmail.com", "name": "pawelpacana" }, "private": false, "pushed_at": 1369866841, "size": 220, "stargazers": 1, "url": "https://github.com/pawelpacana/citrus-core", "watchers": 1 } }
+{
+    "after": "d71454f98d4f1ba0c1974838e4883cbee72d4233",
+    "before": "5425bd6d5ebf6c99cf2fbc56db3fab9ce0ed4516",
+    "commits": [
+        {
+            "added": [],
+            "author": {
+                "email": "pawel.pacana@gmail.com",
+                "name": "Pawe\u0142 Pacana",
+                "username": "pawelpacana"
+            },
+            "committer": {
+                "email": "pawel.pacana@gmail.com",
+                "name": "Pawe\u0142 Pacana",
+                "username": "pawelpacana"
+            },
+            "distinct": true,
+            "id": "02a402784a8caf58de5b610afd12388e0325549c",
+            "message": "Move publishing to private methods.\n\nThey make visual clutter and I'd love to see them somewhere else\nso aspects maybe?",
+            "modified": [
+                "lib/citrus/core/execute_build_service.rb"
+            ],
+            "removed": [],
+            "timestamp": "2013-08-11T01:50:27-07:00",
+            "url": "https://github.com/pawelpacana/citrus-core/commit/02a402784a8caf58de5b610afd12388e0325549c"
+        },
+        {
+            "added": [],
+            "author": {
+                "email": "pawel.pacana@gmail.com",
+                "name": "Pawe\u0142 Pacana",
+                "username": "pawelpacana"
+            },
+            "committer": {
+                "email": "pawel.pacana@gmail.com",
+                "name": "Pawe\u0142 Pacana",
+                "username": "pawelpacana"
+            },
+            "distinct": true,
+            "id": "d665af0790d4671626a63e34ea013d5616498e5c",
+            "message": "Pass build to test runner to be more specific about published output.",
+            "modified": [
+                "lib/citrus/core/execute_build_service.rb",
+                "lib/citrus/core/test_runner.rb",
+                "spec/execute_build_service_spec.rb",
+                "spec/test_runner_spec.rb"
+            ],
+            "removed": [],
+            "timestamp": "2013-08-11T02:57:39-07:00",
+            "url": "https://github.com/pawelpacana/citrus-core/commit/d665af0790d4671626a63e34ea013d5616498e5c"
+        },
+        {
+            "added": [],
+            "author": {
+                "email": "pawel.pacana@gmail.com",
+                "name": "Pawe\u0142 Pacana",
+                "username": "pawelpacana"
+            },
+            "committer": {
+                "email": "pawel.pacana@gmail.com",
+                "name": "Pawe\u0142 Pacana",
+                "username": "pawelpacana"
+            },
+            "distinct": true,
+            "id": "d71454f98d4f1ba0c1974838e4883cbee72d4233",
+            "message": "Improve naming.",
+            "modified": [
+                "lib/citrus/core/execute_build_service.rb"
+            ],
+            "removed": [],
+            "timestamp": "2013-08-11T03:24:10-07:00",
+            "url": "https://github.com/pawelpacana/citrus-core/commit/d71454f98d4f1ba0c1974838e4883cbee72d4233"
+        }
+    ],
+    "compare": "https://github.com/pawelpacana/citrus-core/compare/5425bd6d5ebf...d71454f98d4f",
+    "created": false,
+    "deleted": false,
+    "forced": false,
+    "head_commit": {
+        "added": [],
+        "author": {
+            "email": "pawel.pacana@gmail.com",
+            "name": "Pawe\u0142 Pacana",
+            "username": "pawelpacana"
+        },
+        "committer": {
+            "email": "pawel.pacana@gmail.com",
+            "name": "Pawe\u0142 Pacana",
+            "username": "pawelpacana"
+        },
+        "distinct": true,
+        "id": "d71454f98d4f1ba0c1974838e4883cbee72d4233",
+        "message": "Improve naming.",
+        "modified": [
+            "lib/citrus/core/execute_build_service.rb"
+        ],
+        "removed": [],
+        "timestamp": "2013-08-11T03:24:10-07:00",
+        "url": "https://github.com/pawelpacana/citrus-core/commit/d71454f98d4f1ba0c1974838e4883cbee72d4233"
+    },
+    "pusher": {
+        "name": "none"
+    },
+    "ref": "refs/heads/master",
+    "repository": {
+        "created_at": 1360404806,
+        "fork": false,
+        "forks": 0,
+        "has_downloads": true,
+        "has_issues": true,
+        "has_wiki": true,
+        "id": 8108400,
+        "language": "Ruby",
+        "master_branch": "master",
+        "name": "citrus-core",
+        "open_issues": 0,
+        "owner": {
+            "email": "pawel.pacana@gmail.com",
+            "name": "pawelpacana"
+        },
+        "private": false,
+        "pushed_at": 1376217577,
+        "size": 236,
+        "stargazers": 1,
+        "url": "https://github.com/pawelpacana/citrus-core",
+        "watchers": 1
+    }
+}

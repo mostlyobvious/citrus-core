@@ -18,23 +18,25 @@ class Notifier
     puts "[#{build.uuid}] Build has started."
   end
 
-  def output_received(data)
+  def build_output_received(build, data)
     print data
   end
 end
 
 include Citrus::Core
 
-payload = Pathname.new(File.dirname(__FILE__)).join('payload.json').read
-changeset = GithubAdapter.new.create_changeset_from_push_data(payload)
-build = Build.new(changeset)
+github_adapter = GithubAdapter.new
+changeset      = github_adapter.create_changeset_from_push_data(Pathname.new(File.dirname(__FILE__)).join('payload.json').read)
+
+event_subscriber  = Notifier.new
 workspace_builder = WorkspaceBuilder.new
-configuration_loader = ConfigurationLoader.new
+config_loader     = ConfigurationLoader.new
+
 test_runner = TestRunner.new
-subscriber = Notifier.new
-test_runner.add_subscriber(subscriber)
-build_service = ExecuteBuildService.new(workspace_builder, configuration_loader, test_runner)
-build_service.add_subscriber(subscriber)
-build_service.start(build)
+test_runner.add_subscriber(event_subscriber)
+
+build_service = ExecuteBuildService.new(workspace_builder, config_loader, test_runner)
+build_service.add_subscriber(event_subscriber)
+build_service.start(Build.new(changeset))
 
 
