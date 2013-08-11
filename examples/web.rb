@@ -8,8 +8,8 @@ class ConsoleNotifier
     @io = io
   end
 
-  def build_succeeded(build, output);     io.puts "[#{build.uuid}] Build has succeeded.";     end
-  def build_failed(build, output);        io.puts "[#{build.uuid}] Build has failed.";        end
+  def build_succeeded(build, result);     io.puts "[#{build.uuid}] Build has succeeded.";     end
+  def build_failed(build, result);        io.puts "[#{build.uuid}] Build has failed.";        end
   def build_aborted(build, error) ;       io.puts "[#{build.uuid}] Build has been aborted.";  end
   def build_started(build);               io.puts "[#{build.uuid}] Build has started.";       end
   def build_output_received(build, data); io.print data; end

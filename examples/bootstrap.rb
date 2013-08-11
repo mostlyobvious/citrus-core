@@ -2,11 +2,11 @@ require 'citrus/core'
 require 'pathname'
 
 class Notifier
-  def build_succeeded(build, output)
+  def build_succeeded(build, result)
     puts "[#{build.uuid}] Build has succeeded."
   end
 
-  def build_failed(build, output)
+  def build_failed(build, result)
     puts "[#{build.uuid}] Build has failed."
   end
 
