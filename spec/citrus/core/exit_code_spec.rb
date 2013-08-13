@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe Citrus::Core::TestResult do
+describe Citrus::Core::ExitCode do
 
-  it 'should expose exit code' do
+  it 'should expose exit code value' do
     exit_code = 0
-    subject   = described_class.new(exit_code)
-    expect(subject.exit_code).to eq(exit_code)
+    subject = described_class.new(exit_code)
+    expect(subject.value).to eq(exit_code)
   end
 
   it 'should be successful for zero exit code value' do

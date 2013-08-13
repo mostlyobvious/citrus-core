@@ -24,7 +24,7 @@ module Citrus
         rescue EOFError
         end
         process.wait
-        TestResult.new(process.exit_code)
+        ExitCode.new(process.exit_code)
       end
 
       protected

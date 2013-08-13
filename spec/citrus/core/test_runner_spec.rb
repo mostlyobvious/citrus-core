@@ -27,7 +27,7 @@ describe Citrus::Core::TestRunner do
       end
 
       it 'should return test result' do
-        expect(subject.start(build, configuration, path)).to be_kind_of(Citrus::Core::TestResult)
+        expect(subject.start(build, configuration, path)).to be_kind_of(Citrus::Core::ExitCode)
       end
 
       it 'should wait for process to finish' do
