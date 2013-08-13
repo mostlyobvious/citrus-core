@@ -4,7 +4,7 @@ describe Citrus::Core::QueuedBuilder do
 
   subject { described_class.new(build_service, queue) }
 
-  let(:build_service) { fake(:execute_build_service) }
+  let(:build_service) { fake(:execute_build_usecase) }
   let(:build)         { fake(:build) }
   let(:queue)         { Queue.new }
 

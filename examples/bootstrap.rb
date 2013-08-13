@@ -35,7 +35,7 @@ config_loader     = ConfigurationLoader.new
 test_runner = TestRunner.new
 test_runner.add_subscriber(event_subscriber)
 
-build_service = ExecuteBuildService.new(workspace_builder, config_loader, test_runner)
+build_service = ExecuteBuildUsecase.new(workspace_builder, config_loader, test_runner)
 build_service.add_subscriber(event_subscriber)
 build_service.start(Build.new(changeset))
 

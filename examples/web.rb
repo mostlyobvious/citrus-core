@@ -26,7 +26,7 @@ class QueuedBuilder
     test_runner          = TestRunner.new
     test_runner.add_subscriber(subscriber)
     @queue   = queue
-    @service = ExecuteBuildService.new(workspace_builder, configuration_loader, test_runner)
+    @service = ExecuteBuildUsecase.new(workspace_builder, configuration_loader, test_runner)
     @service.add_subscriber(subscriber)
   end
 
