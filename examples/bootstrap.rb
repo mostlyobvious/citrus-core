@@ -25,7 +25,8 @@ end
 
 include Citrus::Core
 
-payload = Pathname.new(File.dirname(__FILE__)).join('payload.json').read
+github_adapter = GithubAdapter.new
+changeset      = github_adapter.create_changeset_from_push_data(Pathname.new(File.dirname(__FILE__)).join('payload.json').read)
 
 event_subscriber  = Notifier.new
 workspace_builder = WorkspaceBuilder.new
@@ -34,9 +35,8 @@ config_loader     = ConfigurationLoader.new
 test_runner = TestRunner.new
 test_runner.add_subscriber(event_subscriber)
 
-build_factory = CreateBuildService.new
 build_service = ExecuteBuildService.new(workspace_builder, config_loader, test_runner)
 build_service.add_subscriber(event_subscriber)
-build_service.start(build_factory.create_from_github_push(payload))
+build_service.start(Build.new(changeset))
 
 

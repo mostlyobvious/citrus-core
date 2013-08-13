@@ -45,7 +45,9 @@ builder = QueuedBuilder.new(queue, ConsoleNotifier.new)
 builder.run
 
 post '/github_push' do
-  service = CreateBuildService.new
-  queue << service.create_from_github_push(params[:payload])
+  adapter   = Citrus::Core::GithubAdapter.new
+  changeset = adapter.create_changeset_from_push_data(params[:payload])
+  build     = Citrus::Core::Build.new(changeset)
+  queue << build
   status 200
 end
