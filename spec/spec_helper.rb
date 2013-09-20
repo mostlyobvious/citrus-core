@@ -9,8 +9,3 @@ require 'bogus/rspec'
 Bogus.configure do |config|
   config.search_modules << Citrus::Core
 end
-
-if ENV['CI']
-  require 'coveralls'
-  Coveralls.wear!
-end
