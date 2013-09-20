@@ -1,5 +1,3 @@
-require 'citrus/core'
-
 module Citrus
   module Core
     class ExecuteBuildUsecase

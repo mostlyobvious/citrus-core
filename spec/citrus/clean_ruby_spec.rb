@@ -11,7 +11,7 @@ describe 'Ruby syntax' do
   end
 
   def warnings
-    `ruby -w lib/citrus/core.rb 2>&1`.split("\n")
+    `ruby -Ilib -w lib/citrus/core.rb 2>&1`.split("\n")
   end
 
 end
