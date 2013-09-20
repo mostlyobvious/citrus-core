@@ -21,7 +21,7 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency 'fakefs',    '~> 0.4.2'
   gem.add_development_dependency 'rspec',     '~> 2.13'
-  gem.add_development_dependency 'bogus',     '~> 0.1.0'
-  gem.add_development_dependency 'coveralls', '~> 0.6.0'
+  gem.add_development_dependency 'bogus',     '~> 0.1'
+  gem.add_development_dependency 'coveralls', '~> 0.6'
   gem.add_development_dependency 'rake'
 end
