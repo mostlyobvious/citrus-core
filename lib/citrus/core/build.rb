@@ -7,7 +7,7 @@ module Citrus
 
       attr_reader :changeset, :uuid, :output
 
-      def initialize(changeset, uuid = SecureRandom.uuid, output = StringIO.new)
+      def initialize(changeset, uuid = SecureRandom.uuid, output = TestOutput.new)
         @changeset = changeset
         @uuid      = uuid
         @output    = output

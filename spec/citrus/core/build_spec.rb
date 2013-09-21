@@ -7,7 +7,7 @@ describe Citrus::Core::Build do
 
   let(:changeset) { fake(:changeset) }
   let(:uuid)      { SecureRandom.uuid }
-  let(:output)    { StringIO.new }
+  let(:output)    { fake(:test_output) }
 
   specify { expect(subject).to respond_to(:changeset) }
   specify { expect(subject).to respond_to(:uuid) }

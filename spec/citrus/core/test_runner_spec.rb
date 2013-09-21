@@ -15,7 +15,7 @@ describe Citrus::Core::TestRunner do
   let(:exit_code)     { fake(:fixnum) }
   let(:subscriber)    { fake(:subscriber) }
   let(:build)         { fake(:build, output: build_output) }
-  let(:build_output)  { fake { [File, StringIO] } }
+  let(:build_output)  { fake(:test_output) }
 
   context '#start' do
     context do
@@ -42,7 +42,7 @@ describe Citrus::Core::TestRunner do
       expect(subscriber).to have_received.build_output_received(build, `hostname`)
     end
 
-    it 'should write process ouput to build' do
+    it 'should write process output to build' do
       subject.start(build, configuration, path)
       expect(build_output).to have_received.write(`hostname`)
     end

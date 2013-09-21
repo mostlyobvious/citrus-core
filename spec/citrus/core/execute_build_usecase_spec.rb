@@ -13,12 +13,13 @@ describe Citrus::Core::ExecuteBuildUsecase do
 
   let(:workspace_builder)     { fake(:workspace_builder, create_workspace: path) }
   let(:test_runner)           { fake(:test_runner, start: exit_code) }
-  let(:build)                 { fake(:build) }
+  let(:build)                 { fake(:build, output: test_output) }
   let(:configuration_loader)  { fake(:configuration_loader, load_from_path: configuration) }
   let(:configuration)         { fake(:configuration) }
   let(:path)                  { fake }
   let(:subscriber)            { fake(:subscriber) }
   let(:exit_code)             { fake(:exit_code) }
+  let(:test_output)           { fake(:test_output) }
 
   context '#start' do
     before { subject.add_subscriber(subscriber) }
