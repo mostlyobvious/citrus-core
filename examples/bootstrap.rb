@@ -1,6 +1,7 @@
 require 'citrus/core'
 require 'pathname'
 require './examples/buftok'
+require 'tmpdir'
 
 class EventNotifier
   def build_succeeded(build, result)
@@ -28,6 +29,14 @@ class OutputNotifier
   def build_output_received(build, data)
     @buffer[build].extract(data).each do |line|
       puts "[#{build.uuid}] #{line}"
+    end
+  end
+end
+
+module Citrus
+  module Core
+    def self.root
+      Pathname.new(Dir.mktmpdir)
     end
   end
 end
