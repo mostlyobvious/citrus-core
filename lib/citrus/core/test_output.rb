@@ -1,6 +1,7 @@
 module Citrus
   module Core
     class TestOutput
+      include Publisher
 
       def initialize
         @output = []
@@ -8,6 +9,7 @@ module Citrus
 
       def write(data)
         @output << data
+        publish(:test_output_received, data)
       end
 
       def output
