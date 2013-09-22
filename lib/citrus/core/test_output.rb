@@ -12,7 +12,7 @@ module Citrus
         publish(:test_output_received, data)
       end
 
-      def output
+      def read
         @output.join
       end
 

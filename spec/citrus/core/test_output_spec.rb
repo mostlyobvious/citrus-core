@@ -9,13 +9,13 @@ describe Citrus::Core::TestOutput do
   let(:test_output) { described_class.new }
   let(:subscriber)  { fake(:subscriber) }
 
-  specify { expect(test_output).to respond_to(:output) }
+  specify { expect(test_output).to respond_to(:read)  }
   specify { expect(test_output).to respond_to(:write) }
 
   it 'should accumulate test output' do
     chunks = %w(kaka dudu)
     chunks.each { |c| test_output.write(c) }
-    expect(test_output.output).to eq(chunks.join)
+    expect(test_output.read).to eq(chunks.join)
   end
 
   it 'should allow adding subscribers' do
