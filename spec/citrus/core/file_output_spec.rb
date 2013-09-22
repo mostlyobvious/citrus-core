@@ -1,14 +1,14 @@
 require 'spec_helper'
+require 'tmpdir'
 
 class Subscriber
   def test_output_received(chunk); end
 end
 
 describe Citrus::Core::FileOutput do
-  include FakeFS::SpecHelpers
 
   let(:file_output) { described_class.new(file_name, root_path) }
-  let(:root_path)   { Pathname.new('/output_root') }
+  let(:root_path)   { Pathname.new(Dir.mktmpdir('output_root')) }
   let(:file_name)   { 'dummy.log' }
   let(:subscriber)  { fake(:subscriber) }
 
@@ -21,14 +21,13 @@ describe Citrus::Core::FileOutput do
   end
 
   it 'should accumulate test output' do
-    pending 'this will not work on fake_fs'
     chunks = %w(kaka dudu)
     chunks.each { |c| file_output.write(c) }
     expect(file_output.read).to eq(chunks.join)
   end
 
   it 'should provide path to allow direct access to ouput file' do
-    expect(file_output.path.to_s).to eq('/output_root/dummy.log')
+    expect(file_output.path.to_s).to eq(File.join(root_path, 'dummy.log'))
   end
 
   it 'should allow adding subscribers' do
