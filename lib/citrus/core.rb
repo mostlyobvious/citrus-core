@@ -12,6 +12,10 @@ module Citrus
         @cache_root || root.join('cache')
       end
 
+      def output_root
+        @output_root || root.join('output')
+      end
+
       def root
         Pathname.new(File.expand_path('../../', File.dirname(__FILE__)))
       end
@@ -27,6 +31,7 @@ require 'citrus/core/workspace_builder'
 require 'citrus/core/cached_code_fetcher'
 require 'citrus/core/changeset'
 require 'citrus/core/test_output'
+require 'citrus/core/file_output'
 require 'citrus/core/test_runner'
 require 'citrus/core/github_adapter'
 require 'citrus/core/commit'
