@@ -1,29 +1,10 @@
-require 'pathname'
-
 module Citrus
   module Core
-    class << self
 
-      def build_root
-        @build_root || root.join('builds')
-      end
-
-      def cache_root
-        @cache_root || root.join('cache')
-      end
-
-      def output_root
-        @output_root || root.join('output')
-      end
-
-      def root
-        Pathname.new(File.expand_path('../../', File.dirname(__FILE__)))
-      end
-
-    end
   end
 end
 
+require 'citrus/core/world'
 require 'citrus/core/publisher'
 require 'citrus/core/build'
 require 'citrus/core/exit_code'

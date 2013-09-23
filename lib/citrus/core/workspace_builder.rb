@@ -2,15 +2,15 @@ module Citrus
   module Core
     class WorkspaceBuilder
 
-      attr_reader :root_path, :code_fetcher
+      attr_reader :build_root, :code_fetcher
 
-      def initialize(root_path = Citrus::Core.build_root, code_fetcher = CachedCodeFetcher.new)
-        @root_path    = root_path
+      def initialize(build_root, code_fetcher)
+        @build_root   = build_root
         @code_fetcher = code_fetcher
       end
 
       def create_workspace(build)
-        path = root_path.join(partition, build.uuid)
+        path = build_root.join(partition, build.uuid)
         path.mkpath
         code_fetcher.fetch(build.changeset, path)
         path

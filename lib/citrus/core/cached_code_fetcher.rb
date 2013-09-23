@@ -6,7 +6,7 @@ module Citrus
 
       attr_reader :cache_root, :vcs_adapter
 
-      def initialize(cache_root = Citrus::Core.cache_root, vcs_adapter = GitAdapter.new)
+      def initialize(cache_root, vcs_adapter = GitAdapter.new)
         @cache_root  = cache_root
         @vcs_adapter = vcs_adapter
       end

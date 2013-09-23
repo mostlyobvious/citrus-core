@@ -5,7 +5,7 @@ module Citrus
 
       attr_reader :workspace_builder, :configuration_loader, :test_runner
 
-      def initialize(workspace_builder = WorkspaceBuilder.new, configuration_loader = ConfigurationLoader.new, test_runner = TestRunner.new)
+      def initialize(workspace_builder, configuration_loader = ConfigurationLoader.new, test_runner = TestRunner.new)
         @workspace_builder    = workspace_builder
         @configuration_loader = configuration_loader
         @test_runner          = test_runner
