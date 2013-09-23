@@ -4,17 +4,18 @@ module Citrus
   module Core
     class CachedCodeFetcher
 
-      attr_reader :cache_root, :vcs_adapter
+      attr_reader :cache_root, :vcs_adapter, :digester
 
-      def initialize(cache_root, vcs_adapter = GitAdapter.new)
+      def initialize(cache_root, vcs_adapter = GitAdapter.new, digester = Digest::SHA1)
         @cache_root  = cache_root
         @vcs_adapter = vcs_adapter
+        @digester    = digester
       end
 
       def fetch(changeset, destination)
         url  = changeset.repository_url
         head = changeset.head
-        cache_dir = cache_root.join(Digest::SHA1.hexdigest(url))
+        cache_dir = cache_root.join(digester.hexdigest(url))
         cache_dir.mkpath
         update_cache(url, cache_dir)
         vcs_adapter.clone_repository(cache_dir, destination)

@@ -1,11 +1,16 @@
 require 'spec_helper'
 
+class Digester
+  def hexdigest(input); input; end
+end
+
 describe Citrus::Core::CachedCodeFetcher do
 
   subject { described_class.new(cache_root, vcs_adapter) }
 
   let(:destination)     { fake(:pathname) }
   let(:vcs_adapter)     { fake(:git_adapter) }
+  let(:digester)        { fake(:digester) }
   let(:changeset)       { fake(:changeset, head: head_commit_sha, repository_url: repository_url) }
   let(:repository_url)  { 'git://github.com/pawelpacana/citrus-core.git' }
   let(:head_commit_sha) { 'deadbeef' }
