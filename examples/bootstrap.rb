@@ -38,6 +38,6 @@ test_runner       = Citrus::Core::TestRunner.new
 build_service     = Citrus::Core::ExecuteBuild.new(workspace_builder, config_loader, test_runner)
 
 [test_runner, build_service].each { |publisher| publisher.add_subscriber(event_subscriber) }
-build_service.start(Citrus::Core::Build.new(changeset))
+build_service.(Citrus::Core::Build.new(changeset))
 
 

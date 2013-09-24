@@ -11,7 +11,7 @@ module Citrus
         @test_runner          = test_runner
       end
 
-      def start(build)
+      def call(build)
         workspace_path = workspace_builder.create_workspace(build)
         configuration  = configuration_loader.load_from_path(workspace_path)
         notify_build_start(build)
