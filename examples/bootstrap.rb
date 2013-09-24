@@ -1,9 +1,8 @@
 require 'citrus/core'
 require 'pathname'
-require './examples/buftok'
 require 'tmpdir'
 
-class EventNotifier
+class EventSubscriber
   def build_succeeded(build, result)
     puts "[#{build.uuid}] Build has succeeded."
   end
@@ -19,42 +18,23 @@ class EventNotifier
   def build_started(build)
     puts "[#{build.uuid}] Build has started."
   end
-end
-
-class OutputNotifier
-  def initialize
-    @buffer = Hash.new { |hash, key| hash[key] = BufferedTokenizer.new }
-  end
 
   def build_output_received(build, data)
-    @buffer[build].extract(data).each do |line|
-      puts "[#{build.uuid}] #{line}"
-    end
+    print data
   end
 end
 
-module Citrus
-  module Core
-    def self.root
-      Pathname.new(Dir.mktmpdir)
-    end
-  end
-end
-
-include Citrus::Core
-
-github_adapter    = GithubAdapter.new
+world             = Citrus::Core::World.new(Dir.mktmpdir('citrus'))
+github_adapter    = Citrus::Core::GithubAdapter.new
 changeset         = github_adapter.create_changeset_from_push_data(Pathname.new(File.dirname(__FILE__)).join('payload.json').read)
-event_subscriber  = EventNotifier.new
-output_subscriber = OutputNotifier.new
-workspace_builder = WorkspaceBuilder.new
-config_loader     = ConfigurationLoader.new
-test_runner       = TestRunner.new
-build_service     = ExecuteBuildUsecase.new(workspace_builder, config_loader, test_runner)
+event_subscriber  = EventSubscriber.new
+code_fetcher      = Citrus::Core::CachedCodeFetcher.new(world.cache_root)
+workspace_builder = Citrus::Core::WorkspaceBuilder.new(world.build_root, code_fetcher)
+config_loader     = Citrus::Core::ConfigurationLoader.new
+test_runner       = Citrus::Core::TestRunner.new
+build_service     = Citrus::Core::ExecuteBuildUsecase.new(workspace_builder, config_loader, test_runner)
 
-test_runner.add_subscriber(output_subscriber)
-build_service.add_subscriber(event_subscriber)
-
-build_service.start(Build.new(changeset))
+[test_runner, build_service].each { |publisher| publisher.add_subscriber(event_subscriber) }
+build_service.start(Citrus::Core::Build.new(changeset))
 
 
