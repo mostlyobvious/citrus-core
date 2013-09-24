@@ -15,8 +15,8 @@ module Citrus
       def fetch(changeset, destination)
         url  = changeset.repository_url
         head = changeset.head
-        cache_dir = cache_root.join(digester.hexdigest(url))
-        cache_dir.mkpath
+        cache_dir = File.join(cache_root, digester.hexdigest(url))
+        FileUtils.mkpath(cache_dir)
         update_cache(url, cache_dir)
         vcs_adapter.clone_repository(cache_dir, destination)
         vcs_adapter.checkout(destination, head)
@@ -25,7 +25,7 @@ module Citrus
       protected
 
       def update_cache(url, cache_dir)
-        return vcs_adapter.clone_repository(url, cache_dir) unless cache_dir.join('.git').exist?
+        return vcs_adapter.clone_repository(url, cache_dir) if Dir.entries(cache_dir).size == 2
         vcs_adapter.fetch_remote(cache_dir)
         vcs_adapter.reset(cache_dir)
       end

@@ -1,5 +1,4 @@
 require 'citrus/core'
-require 'fakefs/spec_helpers'
 
 RSpec.configure do |config|
   config.order = 'random'

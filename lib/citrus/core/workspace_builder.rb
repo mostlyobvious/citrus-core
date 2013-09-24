@@ -10,8 +10,8 @@ module Citrus
       end
 
       def create_workspace(build)
-        path = build_root.join(partition, build.uuid)
-        path.mkpath
+        path = File.join(build_root, partition, build.uuid)
+        FileUtils.mkpath(path)
         code_fetcher.fetch(build.changeset, path)
         path
       end

@@ -19,7 +19,6 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'childprocess', '~> 0.3.9'
 
-  gem.add_development_dependency 'fakefs', '~> 0.4.2'
   gem.add_development_dependency 'rspec',  '~> 2.13'
   gem.add_development_dependency 'bogus',  '~> 0.1'
   gem.add_development_dependency 'rake'

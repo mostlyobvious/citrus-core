@@ -12,8 +12,8 @@ module Citrus
         @validator = validator
       end
 
-      def load_from_path(pathname)
-        data   = pathname.join('.citrus/config.rb').read
+      def load_from_path(path)
+        data   = File.read(File.join(path, '.citrus/config.rb'))
         config = eval(data)
         raise ConfigurationFileInvalidError unless validator.validate(config)
         config
