@@ -4,7 +4,6 @@ module Citrus
   end
 end
 
-require 'citrus/core/world'
 require 'citrus/core/publisher'
 require 'citrus/core/build'
 require 'citrus/core/exit_code'
