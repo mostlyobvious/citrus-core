@@ -1,6 +1,6 @@
 module Citrus
   module Core
-    class ExecuteBuildUsecase
+    class ExecuteBuild
       include Publisher
 
       attr_reader :workspace_builder, :configuration_loader, :test_runner

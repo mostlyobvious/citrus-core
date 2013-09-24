@@ -32,7 +32,7 @@ code_fetcher      = Citrus::Core::CachedCodeFetcher.new(world.cache_root)
 workspace_builder = Citrus::Core::WorkspaceBuilder.new(world.build_root, code_fetcher)
 config_loader     = Citrus::Core::ConfigurationLoader.new
 test_runner       = Citrus::Core::TestRunner.new
-build_service     = Citrus::Core::ExecuteBuildUsecase.new(workspace_builder, config_loader, test_runner)
+build_service     = Citrus::Core::ExecuteBuild.new(workspace_builder, config_loader, test_runner)
 
 [test_runner, build_service].each { |publisher| publisher.add_subscriber(event_subscriber) }
 build_service.start(Citrus::Core::Build.new(changeset))

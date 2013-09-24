@@ -7,7 +7,7 @@ class Subscriber
   def build_aborted(build, reason);   end
 end
 
-describe Citrus::Core::ExecuteBuildUsecase do
+describe Citrus::Core::ExecuteBuild do
 
   subject { described_class.new(workspace_builder, configuration_loader, test_runner) }
 
