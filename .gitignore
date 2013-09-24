@@ -18,3 +18,5 @@ bin
 .ruby-version
 cache
 builds
+coverage
+.coveralls.yml

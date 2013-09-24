@@ -23,4 +23,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'bogus',  '~> 0.1'
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'mutant', '~> 0.3.0.rc3'
+  gem.add_development_dependency 'coveralls', '~> 0.7'
 end
