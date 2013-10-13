@@ -41,12 +41,12 @@ describe Citrus::Core::TestRunner do
     it 'should publish build_output_received event when process produced output' do
       subject.add_subscriber(subscriber)
       subject.start(build, configuration, path)
-      expect(subscriber).to have_received.build_output_received(build, `hostname`)
+      expect(subscriber).to have_received.build_output_received(build, %x{hostname -f})
     end
 
     it 'should write process output to build' do
       subject.start(build, configuration, path)
-      expect(build_output).to have_received.write(`hostname`)
+      expect(build_output).to have_received.write(%x{hostname -f})
     end
   end
 
