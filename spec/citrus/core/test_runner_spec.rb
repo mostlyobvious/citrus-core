@@ -8,7 +8,7 @@ describe Citrus::Core::TestRunner do
 
   subject { described_class.new }
 
-  let(:configuration) { fake(:configuration, build_script: 'hostname') }
+  let(:configuration) { fake(:configuration) }
   let(:path)          { Pathname.new('/') }
   let(:process)       { fake(io: process_io, exit_code: exit_code) { ChildProcess::AbstractProcess } }
   let(:process_io)    { fake { ChildProcess::AbstractIO } }
@@ -18,8 +18,10 @@ describe Citrus::Core::TestRunner do
   let(:build_output)  { fake(:test_output) }
 
   context '#start' do
+    before { stub(configuration).build_script { 'hostname -f' } }
+
     context do
-      before { stub(ChildProcess).build(configuration.build_script) { process } }
+      before { mock(ChildProcess).build('hostname', '-f') { process } }
 
       it 'spawns child process' do
         subject.start(build, configuration, path)
