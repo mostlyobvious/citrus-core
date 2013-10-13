@@ -1,3 +1,6 @@
+require 'childprocess'
+ChildProcess.posix_spawn = true
+
 module Citrus
   module Core
     class TestRunner
