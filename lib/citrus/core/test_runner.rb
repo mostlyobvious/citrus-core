@@ -7,7 +7,7 @@ module Citrus
 
       def start(build, configuration, path)
         output  = build.output
-        process = ChildProcess.build(*configuration.build_script.split(' '))
+        process = ChildProcess.build('/bin/sh', '-c', configuration.build_script)
         process.cwd = path.to_s
         r, w = IO.pipe
         process.io.stdout = process.io.stderr = w

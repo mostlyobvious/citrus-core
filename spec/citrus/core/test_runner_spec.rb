@@ -21,7 +21,7 @@ describe Citrus::Core::TestRunner do
     before { stub(configuration).build_script { 'hostname -f' } }
 
     context do
-      before { mock(ChildProcess).build('hostname', '-f') { process } }
+      before { mock(ChildProcess).build('/bin/sh', '-c', 'hostname -f') { process } }
 
       it 'spawns child process' do
         subject.start(build, configuration, path)
