@@ -8,3 +8,6 @@ Spartan CI environment. Watch it build itself:
     bundle exec ruby -Ilib examples/bootstrap.rb
 
 
+### Development
+
+    bundle exec rspec
