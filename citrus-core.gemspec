@@ -18,6 +18,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_dependency 'childprocess', '~> 0.3.9'
+  gem.add_dependency 'bundler'
 
   gem.add_development_dependency 'rspec',  '~> 2.13'
   gem.add_development_dependency 'bogus',  '~> 0.1'

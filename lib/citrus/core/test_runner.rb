@@ -9,6 +9,11 @@ module Citrus
       include Publisher
 
       def start(build, configuration, path)
+        require 'bundler'
+        Bundler.with_clean_env { _start(build, configuration, path) }
+      end
+
+      def _start(build, configuration, path)
         output  = build.output
         process = ChildProcess.build('/bin/sh', '-c', configuration.build_script)
         process.cwd = path.to_s
